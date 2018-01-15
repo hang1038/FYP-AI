@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1644395676502826}
+  m_IsPrefabParent: 1
+--- !u!1 &1644395676502826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4622193068468680}
+  - component: {fileID: 114347388877362552}
+  m_Layer: 0
+  m_Name: CustomerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4622193068468680
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1644395676502826}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -30, y: 9.25, z: 45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &114347388877362552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1644395676502826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde2fb9701d9fb84d9953423eb2a7a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customers:
+  - {fileID: 1131895752649246, guid: 64b5b1b0a83a8cc468035031a9bee0dc, type: 2}
+  - {fileID: 1874033563428248, guid: ecf8542f1cbe432479ea1cc620ae3edf, type: 2}
+  - {fileID: 1297494847775970, guid: f443dff28786c3643a0fb5d8e3200e1f, type: 2}
+  - {fileID: 1402422919195884, guid: c8a9beb3d9e4bf0469d3862781527fdf, type: 2}
+  - {fileID: 1531648372660886, guid: 4291ae1278bb5c04abfba03843da5bce, type: 2}
+  - {fileID: 1445471608092208, guid: d70a46f8e28473b4088fdeb1545bdc48, type: 2}
+  currentCustomer: {fileID: 0}
+  rm: {fileID: 0}
+  chosenDish: 
+  text: {fileID: 0}
+  totalCustomer: 4
+  customerServed: 0
+  minSpawnWait: 3
+  maxSpawnWait: 5
+  killMode: 0
