@@ -73,8 +73,6 @@ public class CustomerController : MonoBehaviour
     private void setCorrect()
     {
         Debug.Log("Selected Food correct!!!!!");
-        //wrongImg.enabled = false;
-        //correctImg.enabled = true;
         answerImage.sprite = tick;
         answerImage.enabled = true;
         audioManager.Play("Correct");
@@ -84,8 +82,6 @@ public class CustomerController : MonoBehaviour
     private void setWrong()
     {
         Debug.Log("Selected Food incorrect");
-        //correctImg.enabled = false;
-        //wrongImg.enabled = true;
         answerImage.sprite = cross;
         answerImage.enabled = true;
         audioManager.Play("Wrong");
@@ -95,7 +91,5 @@ public class CustomerController : MonoBehaviour
     private void destroySet()
     {
         answerImage.enabled = false;
-        //correctImg.enabled = false;
-        //wrongImg.enabled = false;
     }
 }
