@@ -5,17 +5,19 @@ using UnityEngine.UI;
 
 public class CustomerController : MonoBehaviour
 {
+
+    public Sprite tick;
+    public Sprite cross;
+    private Image answerImage;
     private Inventory inventory;
     private CustomerSpawn CS;
     private int destroyWait = 5;
-    private Image correctImg, wrongImg;
     private AudioManager audioManager;
 
     private void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
-        correctImg = GameObject.Find("CorrectImg").GetComponent<Image>();
-        wrongImg = GameObject.Find("WrongImg").GetComponent<Image>();
+        answerImage = GameObject.Find("AnswerImage").GetComponent<Image>();
     }
 
     public void CheckFood()
@@ -23,8 +25,8 @@ public class CustomerController : MonoBehaviour
         inventory = FindObjectOfType<Inventory>();
         inventory.GetItemInList();
         Item[] PlayerSelectedFood = inventory.GetItemInList();
-		CS = FindObjectOfType<CustomerSpawn> ();
-		Recipe CorrectRecipeFoods = Resources.Load<Recipe>("recipes/"+CS.chosenDish);
+        CS = FindObjectOfType<CustomerSpawn>();
+        Recipe CorrectRecipeFoods = Resources.Load<Recipe>("recipes/" + CS.chosenDish);
         int counter = CorrectRecipeFoods.foods.Length;
         int PlayerSelectedLength = PlayerSelectedFood.Length;
 
@@ -38,20 +40,20 @@ public class CustomerController : MonoBehaviour
                 {
                     PlayerSelectedFood[k] = null;
                     counter--;
-                    Debug.Log("counter:"+counter);
+                    Debug.Log("counter:" + counter);
                     correct = true;
                     break;
                 }
             }
 
-           if (correct == false)
-           {
+            if (correct == false)
+            {
                 setWrong();
                 return;
-           }
+            }
 
-           if (counter == 0)
-           {
+            if (counter == 0)
+            {
                 for (var k = 0; k < PlayerSelectedLength; k++)
                 {
                     if (PlayerSelectedFood[k] != null)
@@ -64,15 +66,17 @@ public class CustomerController : MonoBehaviour
                 setCorrect();
                 CS = FindObjectOfType<CustomerSpawn>();
                 CS.Invoke("destroyCustomer", destroyWait);
-           }
+            }
         }
     }
 
     private void setCorrect()
     {
         Debug.Log("Selected Food correct!!!!!");
-        wrongImg.enabled = false;
-        correctImg.enabled = true;
+        //wrongImg.enabled = false;
+        //correctImg.enabled = true;
+        answerImage.sprite = tick;
+        answerImage.enabled = true;
         audioManager.Play("Correct");
         Invoke("destroySet", destroyWait);
     }
@@ -80,15 +84,18 @@ public class CustomerController : MonoBehaviour
     private void setWrong()
     {
         Debug.Log("Selected Food incorrect");
-        correctImg.enabled = false;
-        wrongImg.enabled = true;
+        //correctImg.enabled = false;
+        //wrongImg.enabled = true;
+        answerImage.sprite = cross;
+        answerImage.enabled = true;
         audioManager.Play("Wrong");
         Invoke("destroySet", destroyWait);
     }
 
     private void destroySet()
     {
-        correctImg.enabled = false;
-        wrongImg.enabled = false;
+        answerImage.enabled = false;
+        //correctImg.enabled = false;
+        //wrongImg.enabled = false;
     }
 }

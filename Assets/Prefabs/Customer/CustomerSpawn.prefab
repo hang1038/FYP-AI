@@ -58,9 +58,8 @@ MonoBehaviour:
   - {fileID: 1402422919195884, guid: c8a9beb3d9e4bf0469d3862781527fdf, type: 2}
   - {fileID: 1531648372660886, guid: 4291ae1278bb5c04abfba03843da5bce, type: 2}
   - {fileID: 1445471608092208, guid: d70a46f8e28473b4088fdeb1545bdc48, type: 2}
-  rm: {fileID: 0}
-  dishText: {fileID: 0}
   bubble: {fileID: 0}
+  recipeManager: {fileID: 0}
   chosenDish: 
   totalCustomer: 6
   minSpawnWait: 3
