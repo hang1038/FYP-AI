@@ -11,8 +11,8 @@ public class CustomerController : MonoBehaviour
     private Image answerImage;
     private Inventory inventory;
     private CustomerSpawn CS;
-    private int destroyWait = 5;
     private AudioManager audioManager;
+    private int destroyWait = 5;
 
     private void Start()
     {
