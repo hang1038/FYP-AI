@@ -11,14 +11,13 @@ public class GetObject : MonoBehaviour{
     private Inventory inventory;
     private Item item;
     private CustomerController CC;
-    private AudioSource selectSound, removeSound;
+    private AudioManager audioManager;
 
     // Use this for initialization
     void Start () {
         GetTemp = GetComponent<GetObject>();
         inventory = FindObjectOfType<Inventory>();
-        selectSound = GameObject.Find("SelectSound").GetComponent<AudioSource>();
-        removeSound = GameObject.Find("RemoveSound").GetComponent<AudioSource>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void OnDisable()
@@ -38,8 +37,8 @@ public class GetObject : MonoBehaviour{
             Debug.Log("The selection is :"+ temp);
             if (temp == "remove")
             {
+                audioManager.Play("Remove");
                 inventory.RemoveItem();
-                removeSound.Play();
             }
             else if (temp == "submit")
             {
@@ -49,6 +48,8 @@ public class GetObject : MonoBehaviour{
             }
             else
             {
+                audioManager.Play("Select");
+
                 if (temp == "TestFood")
                 {
                     item = Resources.Load<Item>("fish");
@@ -61,7 +62,6 @@ public class GetObject : MonoBehaviour{
                     Debug.Log(item);
                     inventory.AddItem(item);
                 }
-                selectSound.Play();
             }
         }
 	}

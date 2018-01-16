@@ -11,7 +11,7 @@ public class CustomerSpawn : MonoBehaviour {
     public Text dishText;
     public Image bubble;
     private GameObject randCustomer;
-    private AudioSource walkSound;
+    private AudioManager audioManager;
 
     public string chosenDish;
     private string[] dish;
@@ -26,7 +26,7 @@ public class CustomerSpawn : MonoBehaviour {
     
 	void Start ()
     {
-        walkSound = GameObject.Find("WalkSound").GetComponent<AudioSource>();
+        audioManager = FindObjectOfType<AudioManager>();
         StartCoroutine(spawnCustomer());
 	}
 
@@ -68,9 +68,9 @@ public class CustomerSpawn : MonoBehaviour {
 			if (totalCustomer - customerServed <= recipe.Count)
 			    recipe.Remove(dish[i]);
 
+            audioManager.Play("Walk");
             randCustomer = customers[Random.Range(0, customers.Count)];
             currentCustomer = Instantiate(randCustomer, transform.position, transform.rotation);
-            walkSound.Play();
             customers.Remove(randCustomer);
             currentCustomer.transform.parent = gameObject.transform;
         }
@@ -78,12 +78,12 @@ public class CustomerSpawn : MonoBehaviour {
 
     public void destroyCustomer()
     {
+        audioManager.Play("Walk");
         Destroy(currentCustomer);
         dishText.enabled = false;
         dishText.text = "";
         bubble.enabled = false;
         currentCustomer = null;
-        walkSound.Play();
         customerServed++;
     }
 }

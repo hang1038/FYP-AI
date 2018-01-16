@@ -9,14 +9,13 @@ public class CustomerController : MonoBehaviour
     private CustomerSpawn CS;
     private int destroyWait = 5;
     private Image correctImg, wrongImg;
-    private AudioSource correctSound, wrongSound;
+    private AudioManager audioManager;
 
     private void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         correctImg = GameObject.Find("CorrectImg").GetComponent<Image>();
         wrongImg = GameObject.Find("WrongImg").GetComponent<Image>();
-        correctSound = GameObject.Find("CorrectSound").GetComponent<AudioSource>();
-        wrongSound = GameObject.Find("WrongSound").GetComponent<AudioSource>();
     }
 
     public void CheckFood()
@@ -74,7 +73,7 @@ public class CustomerController : MonoBehaviour
         Debug.Log("Selected Food correct!!!!!");
         wrongImg.enabled = false;
         correctImg.enabled = true;
-        correctSound.Play();
+        audioManager.Play("Correct");
         Invoke("destroySet", destroyWait);
     }
 
@@ -83,7 +82,7 @@ public class CustomerController : MonoBehaviour
         Debug.Log("Selected Food incorrect");
         correctImg.enabled = false;
         wrongImg.enabled = true;
-        wrongSound.Play();
+        audioManager.Play("Wrong");
         Invoke("destroySet", destroyWait);
     }
 
