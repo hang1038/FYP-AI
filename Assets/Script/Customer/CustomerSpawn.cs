@@ -6,24 +6,27 @@ using UnityEngine.UI;
 public class CustomerSpawn : MonoBehaviour {
 
     public List<GameObject> customers;
-    public GameObject currentCustomer;
+    private GameObject currentCustomer;
 	public RecipeManager rm;
-	string[] dish;
-	public string chosenDish;
-	public Text text;
+    public Text dishText;
+    public Image bubble;
+    private GameObject randCustomer;
+    private AudioSource walkSound;
 
-    GameObject randCustomer;
+    public string chosenDish;
+    private string[] dish;
+
     public int totalCustomer;
-    public int customerServed = 0;
+    private int customerServed = 0;
 
-    int spawnWait;
-    public int minSpawnWait;
-    public int maxSpawnWait;
+    public int minSpawnWait, maxSpawnWait;
+    private int spawnWait;
 
     public bool killMode;
     
 	void Start ()
     {
+        walkSound = GameObject.Find("WalkSound").GetComponent<AudioSource>();
         StartCoroutine(spawnCustomer());
 	}
 
@@ -34,9 +37,7 @@ public class CustomerSpawn : MonoBehaviour {
             killMode = false;
 
             if (currentCustomer)
-            {
                 destroyCustomer();
-            }
         }
 
         // End game
@@ -52,7 +53,6 @@ public class CustomerSpawn : MonoBehaviour {
 		List<string> recipe = new List<string> (rm.chosenDish);
 		dish = new string[totalCustomer];
 
-
         for (int i = 0; i < totalCustomer; i++)
         {
             yield return new WaitUntil(() => !currentCustomer);
@@ -60,16 +60,17 @@ public class CustomerSpawn : MonoBehaviour {
             yield return new WaitForSeconds(spawnWait);
 
 			dish[i] = recipe[Random.Range (0, recipe.Count)];
-			text.text = dish[i];
-			text.enabled = true;
-			chosenDish = dish[i];
+            dishText.text = dish[i];
+            dishText.enabled = true;
+            bubble.enabled = true;
+            chosenDish = dish[i];
 
-			if (totalCustomer - customerServed <= recipe.Count) {
-				recipe.Remove(dish[i]);
-			}
+			if (totalCustomer - customerServed <= recipe.Count)
+			    recipe.Remove(dish[i]);
 
             randCustomer = customers[Random.Range(0, customers.Count)];
             currentCustomer = Instantiate(randCustomer, transform.position, transform.rotation);
+            walkSound.Play();
             customers.Remove(randCustomer);
             currentCustomer.transform.parent = gameObject.transform;
         }
@@ -78,9 +79,11 @@ public class CustomerSpawn : MonoBehaviour {
     public void destroyCustomer()
     {
         Destroy(currentCustomer);
-		text.enabled = false;
-		text.text = "";
+        dishText.enabled = false;
+        dishText.text = "";
+        bubble.enabled = false;
         currentCustomer = null;
+        walkSound.Play();
         customerServed++;
     }
 }

@@ -215,6 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4800423885897348}
   - component: {fileID: 95875463002541098}
+  - component: {fileID: 114030289296086754}
   m_Layer: 0
   m_Name: Customer4
   m_TagString: Untagged
@@ -1073,6 +1074,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114030289296086754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402422919195884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55898f73fe95641429f691546575d161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137530923071331204
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
